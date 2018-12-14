@@ -1,0 +1,14 @@
+version: '3'
+services:
+  api:
+    build: ./api
+    ports:
+     - "8080"
+  nginx:
+    image: nginx:stable-alpine
+    links:
+      - api
+    ports:
+     - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
